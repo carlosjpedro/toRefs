@@ -1,7 +1,8 @@
 <template>
   <div>
+    <label>Input in Parent</label>
     <input type="text" v-model="message"/>
-    <Child :msg="message"/>
+    <Child v-model="message"/>
   </div>
 </template>
 
@@ -16,7 +17,7 @@ export default defineComponent({
   },
   setup() {
     const message = ref("Original Text");
-    watch(message, (v) => console.log("Parent view message", v))
+    watch(message, (v) => console.log("ParentView message", v))
     return {message};
   }
 });
