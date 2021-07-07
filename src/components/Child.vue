@@ -1,10 +1,10 @@
 <template>
   <div>
     <label for="componentInput">Input in Child</label>
-    <input id="componentInput" type="text" :value="msg" @input="handler($event.target.value)"/>
+    <input id="componentInput" type="text" v-model="msg.stringValue"/>
     <br>
     <label for="componentSpan">Span in Child</label>
-    <span id="componentSpan">{{ msg }}</span>
+    <span id="componentSpan">{{ msg.stringValue }}</span>
   </div>
 </template>
 
@@ -14,20 +14,12 @@
 import {defineComponent, toRefs} from 'vue';
 
 export default defineComponent({
-  props: {
-    modelValue: {
-      type: String,
-      required: true
-    },
-  },
-  emits: [
-    'update:modelValue'
-  ],
+  props:
+      ['modelValue'],
   setup(props) {
     const {modelValue: msg} = toRefs(props);
-    
-    const handler = (v:string) =>  msg.value = v;
-    return {msg, handler};
+
+    return {msg,};
   }
 });
 </script>
